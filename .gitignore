@@ -1,0 +1,13 @@
+# Ignore your virtual environment folder
+emergencybackend/
+
+# Python stuff
+__pycache__/
+*.py[cod]
+*.sqlite3
+
+# Editor & OS clutter
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
