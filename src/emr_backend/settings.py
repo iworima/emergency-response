@@ -28,9 +28,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-9$2qr6+b0y2tqvxv4@2!=bh30hyf8#gy5t^qn9j8@_@xkvvo3b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.environ.get('DEBUG', 'TRUE')=="TRUE"
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'https://emergency-response-aeh2.onrender.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'emergency-response-aeh2.onrender.com']
 
 
 
@@ -97,27 +97,30 @@ DATABASES = {
     }
 }
 
-# This block should be added or modified to use DATABASE_URL
 if 'DATABASE_URL' in os.environ:
     DATABASES['default'] = dj_database_url.config(
         conn_max_age=600,
-        ssl_require=True # For Render's PostgreSQL, this is often necessary
+        ssl_require=True  # Needed for Render
     )
-else:
-    # Fallback for local development if DATABASE_URL isn't set
-    # This will use SQLite for local development
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
-    }
 
 
 
 #DATABASES = {
 #    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'), conn_max_age=600)
 #}
+
+#if not DEBUG:
+#    DATABASES = {
+#        "DEFAULT" = dj_database_url.parse(os.environ.get("DATABASE_URL"))
+#    }
+#else:
+#    DATABASES = {
+#        'default': {
+#            'ENGINE': 'django.db.backends.sqlite3',
+#            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#        }
+#    }
+
 
 
 
