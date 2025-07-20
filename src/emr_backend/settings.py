@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-9$2qr6+b0y2tqvxv4@2!=bh30hyf8#gy5t^qn9j8@_@xkvvo3b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1',]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'https://emergency-response-aeh2.onrender.com']
 
 
 
