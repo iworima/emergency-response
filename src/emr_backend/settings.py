@@ -28,7 +28,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-9$2qr6+b0y2tqvxv4@2!=bh30hyf8#gy5t^qn9j8@_@xkvvo3b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'TRUE')=="TRUE"
+DEBUG = os.environ.get('DEBUG', 'FALSE').upper() == 'TRUE'
+
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'emergency-response-aeh2.onrender.com']
 
@@ -61,10 +62,27 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    "https://emergency-frontend-psi.vercel.app",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://emergency-frontend-psi.vercel.app",
+]
+
+# Allow credentials (needed for session login/logout)
+# For development only
+CORS_ALLOW_CREDENTIALS = True
+
+if DEBUG:
+    CORS_ALLOW_ALL_ORIGINS = True
+else:
+    CORS_ALLOW_ALL_ORIGINS = False
+
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# For development only
-CORS_ALLOW_ALL_ORIGINS = True
+
 
 ROOT_URLCONF = 'emr_backend.urls'
 
