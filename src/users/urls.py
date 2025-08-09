@@ -12,4 +12,5 @@ urlpatterns = [
     # DRF-based authenticated profile endpoints
     path('api/doctor/profile/', get_doctor_profile, name='doctor_profile'),
     path('api/patient/profile/', get_patient_profile, name='patient_profile'),
+    path('csrf/', views.get_csrf_token, name='csrf_token'),
 ]
