@@ -62,13 +62,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
+CSRF_TRUSTED_ORIGINS = ['https://emergency-frontend-psi.vercel.app']
+
 CORS_ALLOWED_ORIGINS = [
     "https://emergency-frontend-psi.vercel.app",
 ]
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://emergency-frontend-psi.vercel.app",
-]
 
 # Allow credentials (needed for session login/logout)
 # For development only
@@ -120,26 +120,6 @@ if 'DATABASE_URL' in os.environ:
        conn_max_age=600,
         ssl_require=True  # Needed for Render
     )
-
-
-
-#DATABASES = {
-#    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'), conn_max_age=600)
-#}
-
-#if not DEBUG:
-#    DATABASES = {
-#        "DEFAULT" = dj_database_url.parse(os.environ.get("DATABASE_URL"))
-#    }
-#else:
-#    DATABASES = {
-#        'default': {
-#            'ENGINE': 'django.db.backends.sqlite3',
-#            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#        }
-#    }
-
-
 
 
 # Password validation
@@ -202,4 +182,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 AUTH_USER_MODEL = 'users.CustomUser'
-
