@@ -12,6 +12,7 @@ from rest_framework.permissions import IsAuthenticated
 from users.serializers import DoctorProfileSerializer, PatientProfileSerializer
 #from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
+from django.shortcuts import render # You might need this import
 
 
 
@@ -44,10 +45,12 @@ def signup_doctor(request):
     except Exception as e:
         return JsonResponse({'message': str(e)}, status=400)
     
-#csrf token initialization
+# csrf token initialization
 def get_csrf_token(request):
     token = get_token(request)
-    return JsonResponse({'csrftoken': token})
+    response = JsonResponse({'csrftoken': token})
+    response.set_cookie('csrftoken', token, samesite='Lax') # Set the token as a cookie
+    return response
 
 #patient signup api
 @require_http_methods(["POST"])
